@@ -1,0 +1,47 @@
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    width: 1000px; 
+    margin: 0 auto; 
+}
+.chat-container
+{
+    border-radius:20px;
+    width:50%;
+    height:500px;
+    margin:0 auto;
+    padding:none;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.chat-header
+{
+    height:5%;
+    text-align:center;
+    padding-top: 15px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+}
+.chat-body
+{
+    height: 86%;
+}
+.chat-footer
+{
+    height:5%;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);   
+}
+input
+{
+    text-align: right;
+    width:80%;
+    height: 100%;
+    border: none;
+}
+
+.chat-button
+{
+    width:19%;
+    border:none;
+    background: none;
+    height: 98%;
+
+}
