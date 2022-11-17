@@ -6,7 +6,6 @@ import './Chat.css'
 import Navbar from '../Navbar';
 import {AiOutlineSend } from 'react-icons/ai';
 
-
 const socket = io('http://localhost:3001');//connect to server 
 
 export default function Chat()
@@ -24,6 +23,12 @@ export default function Chat()
           setMessage('');
         }
     };
+
+    const sendMessageEnter = (event) => {
+        if(event.key == 'Enter'){
+            sendMessage()
+        }
+    }
 
     useEffect(()=>{
         const {room,name} = queryString.parse(search); 
@@ -50,13 +55,20 @@ export default function Chat()
                 <div className = "chat-header">
                     <span>{name}</span>
                 </div>
-                <div className = "chat-body">
+                <ul className = "chat-body">
                     {messageList.map((message)=>{
-                        return <h4>{message.message} - {message.name}</h4>
+                        console.log(message.name)
+                        if (message.name==name)
+                            return <li className='message-sent'><span>{message.message}</span></li>
+                        else
+                            return <li className='message-receive'><span>{message.message} </span></li>
                     })}
-                </div>
+                </ul>
                 <div className = "chat-footer">
-                    <input type = "text" onChange  = {(event)=>{setMessage(event.target.value);}}/>
+                    <input type = "text" 
+                            value={message}
+                            onChange  = {(event)=>{setMessage(event.target.value);}}
+                            onKeyDown={sendMessageEnter}/>
                     <button className = 'chat-button' type = "submit" onClick = {sendMessage}> <AiOutlineSend /></button>
                 </div>
             </div>

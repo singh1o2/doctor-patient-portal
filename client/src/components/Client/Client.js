@@ -1,15 +1,21 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import Navbar from '../Navbar';
 import {AiOutlineArrowRight } from 'react-icons/ai';
 import DoctorCard from './DoctorCard';
 import './Client.css';
 
-const doctors = [{name:'Dr. Sam', title: 'Family Physician', room:'123'},
-                 {name:'Dr. Kim', title: 'Cardiologist', room:'561'}]
+
+
 export default function Client()
 {
     const[dropDown,setDropdown]= useState(false);
-
+    const[doctors,setDoctors] = useState([]);
+    
+    useEffect(()=>{
+                fetch('http://localhost:8080/doctor/all')
+                    .then(res =>res.json())
+                    .then(data=>setDoctors(data))});
+    
     return(
         <div>
             <Navbar/>

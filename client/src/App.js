@@ -10,7 +10,7 @@ export default function App()
     return (
         <Router>
             <Routes>
-                <Route path = '/' element = {<Client />}></Route>
+                <Route path = '/client' element = {<Client />}></Route>
                 <Route path = '/chat' element = {<Chat/>}></Route>
                 <Route path = '/doctor' element = {<Doctor/>}></Route>
 
