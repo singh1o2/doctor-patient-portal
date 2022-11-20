@@ -1,0 +1,6 @@
+client/package-lock.json
+server/package-lock.json
+client/node_modules
+server/node_modules
+key.json
+.dist
