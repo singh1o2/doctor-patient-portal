@@ -19,8 +19,9 @@ export default function Doctor()
 
     }
     useEffect(()=>{
+        console.log('Hi');
         fetchData();
-    });
+    },[]);
 
     const handleClick = async () =>{
         setStatus(!status);

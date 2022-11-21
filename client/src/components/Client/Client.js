@@ -17,7 +17,7 @@ export default function Client()
     }
     useEffect( ()=>{
                fetchData();
-                    });
+                    },[]);
     
     return(
         <div>
