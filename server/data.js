@@ -1,10 +1,9 @@
-const { response } = require('express');
 const express = require('express');
 const cors = require('cors');
 const app = express();
 app.use(cors());
 const admin = require('firebase-admin');
-const key = require('./key.json');
+const key = require('../key.json');
 admin.initializeApp({
     credential:admin.credential.cert(key)
 });
@@ -18,8 +17,7 @@ app.post('/doctor/create',async(req,res)=>{
     const id  = req.body.email;
     const userJson = {
         email: req.body.email,
-        firstName:req.body.firstName,
-        lastName:req.body.lastName,
+        firstName:req.body.name,
         speciality:req.body.speciality,
         password: req.body.password,
         status:'N'
@@ -38,35 +36,41 @@ app.get('/doctor/all',async(req,res)=>{
 });
 
 app.get('/doctor/:id',async(req,res)=>{
-    const doctor = db.collection('doctors').doc(req.params.id)
-    res.send(await doctor.get().data());
+    const doctor = await db.collection('doctors').doc(req.params.id).get();
+    res.send(doctor.data());
 });
 
-app.post('/doctor/create',async(req,res)=>{
+app.put('/doctor/update/:id',async(req,res)=>{
+    const doctor = db.collection('doctors').doc(req.params.id)
+    doctor.update({
+        status: req.body.status
+    })
+    res.send({msg:'Status updated'})
+});
+
+
+app.post('/customer/create',async(req,res)=>{
     const id  = req.body.email;
     const userJson = {
         email: req.body.email,
-        firstName:req.body.firstName,
-        lastName:req.body.lastName,
-        speciality:req.body.speciality,
-        password: req.body.password,
-        status:'N'
+        name:req.body.name,
+        location:req.body.location,
     }
-    await db.collection('doctors').doc(id).set(userJson);
+    await db.collection('customers').doc(id).set(userJson);
     res.send({msg:'User Added'})
 });
 
-app.get('/doctor/get',async(req,res)=>{
-    const doctors = db.collection('doctors').get();
+app.get('/customer/get',async(req,res)=>{
+    const customers = db.collection('customers').get();
     let response = []
-    (await doctors).forEach(doctor=>{
+    (await customers).forEach(doctor=>{
         response.push(doctor.data());
     });
-    res.send(response);
+    res.send(customers);
 });
 
-app.get('/doctor/:id',async(req,res)=>{
-    res.send(db.collection('doctors').doc(req.params.id).data());
+app.get('/customer/:id',async(req,res)=>{
+    res.send(db.collection('customers').doc(req.params.id).data());
 });
 
 app.listen(8080,()=>console.log('running'));

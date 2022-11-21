@@ -1,19 +1,22 @@
 .navbar
 {
     list-style: none;
+    margin-top:30px ;
 }
 .nav-logo
 {
     font-weight:bold;
     display: inline-block;
-    margin-right: 400px;
+    margin-right: 280px;
 
 }
 .nav-item
 {
     display: inline-block;
-    width:100px;
-    height:80px;
+}
+.nav-main
+{
+    margin: '80px';
 }
 /*for client component*/
 /*header*/
@@ -57,7 +60,7 @@ h1
     display: grid;
     grid-template-columns: 2fr 1fr ;
     width:250px;
-    height:250px;
+    height:300px;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 

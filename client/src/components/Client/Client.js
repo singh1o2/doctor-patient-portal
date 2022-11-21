@@ -5,16 +5,19 @@ import DoctorCard from './DoctorCard';
 import './Client.css';
 
 
-
 export default function Client()
 {
     const[dropDown,setDropdown]= useState(false);
     const[doctors,setDoctors] = useState([]);
     
-    useEffect(()=>{
-                fetch('http://localhost:8080/doctor/all')
-                    .then(res =>res.json())
-                    .then(data=>setDoctors(data))});
+    const fetchData = async()=>{
+        await fetch('http://localhost:8080/doctor/all')
+        .then(res =>res.json())
+        .then(data=>setDoctors(data));
+    }
+    useEffect( ()=>{
+               fetchData();
+                    });
     
     return(
         <div>

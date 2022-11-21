@@ -1,10 +1,11 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useContext} from 'react';
 import io from 'socket.io-client';
 import queryString from 'query-string';
 import {useLocation} from 'react-router-dom';
 import './Chat.css'
 import Navbar from '../Navbar';
 import {AiOutlineSend } from 'react-icons/ai';
+import {AuthContext} from '../../contexts/AuthContext';
 
 const socket = io('http://localhost:3001');//connect to server 
 
@@ -15,6 +16,7 @@ export default function Chat()
     const [room,setRoom]= useState('');
     const [message,setMessage] = useState('');
     const [messageList,setMessageList] = useState([]);
+    const {currentUser} =useContext(AuthContext);
 
     const sendMessage  = async () => {
         if(message!=''){
