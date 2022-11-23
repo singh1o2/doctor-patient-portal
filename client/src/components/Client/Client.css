@@ -83,8 +83,12 @@ h1
     margin-top: 25px;
 }
 
-img{
+.doctor-card .card-item {
     width:150px;
     height:150px;
     border-radius: 100px;
+}
+.doctor-card .card-button{
+  margin: 10px;
+  text-align: center;
 }
